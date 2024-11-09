@@ -38,6 +38,8 @@ class DatabaseSeeder extends Seeder
             Pelanggan::factory(50)->create()
         ])->create();
 
+        Pengeluaran::factory(30)->create();
+
         // Pelanggan::factory()->create([
         //     'nama' => 'Joko',
         //     'jenis_kelamin' => 'Laki-laki',

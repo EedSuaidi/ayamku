@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('kategori');
             $table->integer('total');
             $table->date('tanggal_pengeluaran');
-            $table->string('catatan')->nullable();
+            $table->string('keterangan')->nullable();
             $table->timestamps();
         });
     }

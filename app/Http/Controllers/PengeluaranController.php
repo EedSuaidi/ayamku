@@ -12,6 +12,10 @@ class PengeluaranController extends Controller
      */
     public function index()
     {
+        $title = 'Delete Pengeluaran!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
+
         return view('dashboard.pengeluarans.index', [
             'pengeluarans' => Pengeluaran::latest()->get(),
             'title' => 'Daftar Pengeluaran'
@@ -23,7 +27,9 @@ class PengeluaranController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.pengeluarans.create', [
+            'title' => 'Tambah Pengeluaran'
+        ]);
     }
 
     /**
@@ -31,15 +37,28 @@ class PengeluaranController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'kategori' => 'required|max:128',
+            'total' => 'required|integer',
+            'tanggal_pengeluaran' => 'required|date',
+            'keterangan' => ''
+        ]);
+
+        Pengeluaran::create($validatedData);
+
+        alert()->success('Data Berhasil Disimpan!');
+
+        return redirect('/dashboard/pengeluarans');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Pengeluaran $pengeluaran)
     {
-        //
+        return view('dashboard.pengeluarans.show', compact('pengeluaran'), [
+            'title' => 'Detail Pengeluaran'
+        ]);
     }
 
     /**
