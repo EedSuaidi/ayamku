@@ -13,8 +13,8 @@ class PemasukanController extends Controller
      */
     public function index()
     {
-        $title = 'Delete Pemasukan!';
-        $text = "Are you sure you want to delete?";
+        $title = 'Hapus Pemasukan!';
+        $text = "Yakin Ingin Menghapus Data Pemasukan?";
         confirmDelete($title, $text);
 
         return view('dashboard.pemasukans.index', [
@@ -45,6 +45,11 @@ class PemasukanController extends Controller
             'tanggal_pemasukan' => 'required|date',
         ]);
 
+        // Tambah saldo pelanggan
+        $pelanggan = Pelanggan::findOrFail($validatedData['pelanggan_id']);
+        $pelanggan->saldo += $validatedData['total'];
+        $pelanggan->save();
+
         Pemasukan::create($validatedData);
 
         alert()->success('Data Berhasil Disimpan!');
@@ -63,27 +68,18 @@ class PemasukanController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pemasukan $pemasukan)
+    public function destroy($id)
     {
-        Pemasukan::destroy($pemasukan->id);
+        $pemasukan = Pemasukan::findOrFail($id);
+
+        // Kurangi saldo pelanggan
+        $pelanggan = Pelanggan::findOrFail($pemasukan->pelanggan_id);
+        $pelanggan->saldo -= $pemasukan->total;
+        $pelanggan->save();
+
+        $pemasukan->delete();
 
         alert()->success('Data berhasil dihapus!');
 

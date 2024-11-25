@@ -1,5 +1,7 @@
 <x-layout>
 
+    <x-slot:title>{{ $title }}</x-slot:title>
+
     @include('sweetalert::alert')
 
     @slot('additionalStyle')
@@ -22,6 +24,7 @@
             </div>
         </div>
     </div>
+
     <section class="section">
         <div class="card">
             <div class="card-header d-flex align-items-center">
@@ -68,7 +71,5 @@
         <script src="{{ asset('/dist') }}/assets/extensions/simple-datatables/umd/simple-datatables.js"></script>
         <script src="{{ asset('/dist') }}/assets/static/js/pages/simple-datatables.js"></script>
     @endslot
-
-    <x-slot:title>{{ $title }}</x-slot:title>
 
 </x-layout>

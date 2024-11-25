@@ -4,9 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Mazer Admin Dashboard</title>
-
-
+    <title>Ayamku - Login</title>
 
     <link rel="shortcut icon" href="{{ asset('/') }}dist/assets/compiled/svg/favicon.svg" type="image/x-icon">
     <link rel="shortcut icon"
@@ -15,6 +13,22 @@
     <link rel="stylesheet" href="{{ asset('/') }}dist/assets/compiled/css/app.css">
     <link rel="stylesheet" href="{{ asset('/') }}dist/assets/compiled/css/app-dark.css">
     <link rel="stylesheet" href="{{ asset('/') }}dist/assets/compiled/css/auth.css">
+    <style>
+        html,
+        body {
+            max-height: 100%;
+            overflow: hidden;
+        }
+
+        #auth {
+            height: 100vh;
+        }
+
+        #auth-left,
+        #auth-right {
+            height: 100vh;
+        }
+    </style>
 </head>
 
 <body>
@@ -24,24 +38,24 @@
         <div class="row h-100">
             <div class="col-lg-5 col-12">
                 <div id="auth-left">
-                    <div class="auth-logo">
-                        <a href="index.html"><img src="{{ asset('/') }}dist/assets/compiled/svg/logo.svg"
-                                alt="Logo"></a>
+                    <div class="auth-logo mb-5">
+                        <a href="/login" class="fs-1 fw-bold">Ayamku</a>
                     </div>
                     <h1 class="auth-title">Log in.</h1>
                     <p class="auth-subtitle mb-5">Log in with your data that you entered during registration.</p>
 
                     <form action="/login" method="POST">
                         @csrf
+
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" name="username"
-                                class="form-control form-control-xl @error('username') is-invalid @enderror"
-                                value="{{ old('username') }}" placeholder="Username" required>
+                            <input type="email" name="email"
+                                class="form-control form-control-xl @error('email') is-invalid @enderror"
+                                value="{{ old('email') }}" placeholder="Email" required>
                             <div class="form-control-icon">
                                 <i class="bi bi-person"></i>
                             </div>
 
-                            @error('username')
+                            @error('email')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -66,6 +80,18 @@
         </div>
 
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (session('loginError'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Login Gagal!',
+                text: 'Email atau Password salah!',
+            });
+        </script>
+    @endif
+
 </body>
 
 </html>

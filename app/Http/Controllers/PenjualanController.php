@@ -13,8 +13,8 @@ class PenjualanController extends Controller
      */
     public function index()
     {
-        $title = 'Delete Penjualan!';
-        $text = "Are you sure you want to delete?";
+        $title = 'Hapus Penjualan!';
+        $text = "Yakin Ingin Menghapus Data Penjualan?";
         confirmDelete($title, $text);
 
         return view('dashboard.penjualans.index', [
@@ -48,6 +48,11 @@ class PenjualanController extends Controller
             'tanggal_penjualan' => 'required|date',
         ]);
 
+        // Kurangi saldo pelanggan
+        $pelanggan = Pelanggan::findOrFail($validatedData['pelanggan_id']);
+        $pelanggan->saldo -= $validatedData['total'];
+        $pelanggan->save();
+
         Penjualan::create($validatedData);
 
         alert()->success('Data Berhasil Disimpan!');
@@ -66,39 +71,18 @@ class PenjualanController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    // public function edit(Penjualan $penjualan)
-    // {
-    //     return view('dashboard.penjualans.edit', compact('penjualan'), [
-    //         'title' => 'Edit Penjualan'
-    //     ]);
-    // }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    // public function update(Request $request, Penjualan $penjualan)
-    // {
-    //     $validatedData = $request->validate([
-    //         'nama' => 'required|max:128',
-    //         'alamat' => 'required|max:256',
-    //         'nomor_telepon' => 'required|max:32',
-    //     ]);
-
-    //     Penjualan::where('id', $penjualan->id)->update($validatedData);
-
-    //     alert()->success('Data Berhasil Diubah!');
-
-    //     return redirect('/dashboard/penjualans');
-    // }
-
-    /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Penjualan $penjualan)
+    public function destroy($id)
     {
-        Penjualan::destroy($penjualan->id);
+        $penjualan = Penjualan::findOrFail($id);
+
+        // Tambah saldo pelanggan
+        $pelanggan = Pelanggan::findOrFail($penjualan->pelanggan_id);
+        $pelanggan->saldo += $penjualan->total;
+        $pelanggan->save();
+
+        $penjualan->delete();
 
         alert()->success('Data berhasil dihapus!');
 

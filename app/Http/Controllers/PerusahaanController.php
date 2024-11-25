@@ -12,13 +12,13 @@ class PerusahaanController extends Controller
      */
     public function index()
     {
-        $title = 'Delete Perusahaan!';
-        $text = "Are you sure you want to delete?";
+        $title = 'Hapus Perusahaan!';
+        $text = "Yakin Ingin Menghapus Data Perusahaan?";
         confirmDelete($title, $text);
 
         return view('dashboard.perusahaans.index', [
             'perusahaans' => Perusahaan::latest()->get(),
-            'title' => 'Perusahaan'
+            'title' => 'Daftar Perusahaan'
         ]);
     }
 
@@ -81,7 +81,7 @@ class PerusahaanController extends Controller
             'nomor_telepon' => 'required|max:32',
         ]);
 
-        Perusahaan::where('id', $perusahaan->id)->update($validatedData);
+        $perusahaan->update($validatedData);
 
         alert()->success('Data Berhasil Diubah!');
 

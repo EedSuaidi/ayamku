@@ -1,8 +1,27 @@
 <x-layout>
 
+    <x-slot:title>{{ $title }}</x-slot:title>
+
     @slot('additionalStyle')
         <link rel="stylesheet" href="{{ asset('/dist') }}/assets/extensions/flatpickr/flatpickr.min.css">
     @endslot
+
+    <div class="page-heading mb-3">
+        <div class="row d-flex align-items-center">
+            <div class="col-md-6 order-md-1 order-last">
+                <h3 class="m-0">Pengeluaran</h3>
+            </div>
+            <div class="col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="/dashboard/pengeluarans">Pengeluaran</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Tambah</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
 
     <section class="section">
         <div class="card">
@@ -43,7 +62,7 @@
                                     <span class="input-group-text" id="basic-addon1">Rp. </span>
                                     <input type="text" class="form-control @error('total') is-invalid @enderror"
                                         value="{{ old('total') }}" min="0" id="total" name="total"
-                                        placeholder="Masukkan Total pengeluaran" onkeyup="formatAngka(this)" required>
+                                        placeholder="Masukkan Total Pengeluaran" onkeyup="formatAngka(this)" required>
                                 </div>
 
                                 @error('total')
@@ -70,8 +89,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="keterangan">Keterangan</label>
-                                <textarea style="resize: none;" class="form-control" id="keterangan" name="keterangan" rows="3"></textarea>
+                                <label for="keterangan">Keterangan <span class="fw-light">(Opsional)</span></label>
+                                <textarea style="resize: none;" class="form-control" id="keterangan" name="keterangan" rows="3"
+                                    placeholder="Masukkan Keterangan"></textarea>
 
                                 @error('keterangan')
                                     <div class="alert alert-danger mt-2 mb-1">

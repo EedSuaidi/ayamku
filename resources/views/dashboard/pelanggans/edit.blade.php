@@ -1,5 +1,24 @@
 <x-layout>
 
+    <x-slot:title>{{ $title }}</x-slot:title>
+
+    <div class="page-heading mb-3">
+        <div class="row d-flex align-items-center">
+            <div class="col-md-6 order-md-1 order-last">
+                <h3 class="m-0">Pelanggan</h3>
+            </div>
+            <div class="col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="/dashboard/pelanggans">Pelanggan</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+
     <section class="section">
         <div class="card">
             <div class="card-header">
@@ -32,7 +51,7 @@
                                     <select class="form-select @error('jenis_kelamin') is-invalid @enderror"
                                         id="jenis-kelamin" name="jenis_kelamin" required>
                                         <option disabled selected>Pilih Jenis Kelamin</option>
-                                        <option value="Laki-laki" @selected(old('jenis_kelamin', $pelanggan->jenis_kelamin) == 'Laki - laki')>Laki-laki</option>
+                                        <option value="Laki-laki" @selected(old('jenis_kelamin', $pelanggan->jenis_kelamin) == 'Laki-laki')>Laki-laki</option>
                                         <option value="Perempuan" @selected(old('jenis_kelamin', $pelanggan->jenis_kelamin) == 'Perempuan')>Perempuan</option>
                                     </select>
 

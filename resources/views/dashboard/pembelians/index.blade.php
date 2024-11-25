@@ -1,5 +1,7 @@
 <x-layout>
 
+    <x-slot:title>{{ $title }}</x-slot:title>
+
     @include('sweetalert::alert')
 
     @slot('additionalStyle')
@@ -52,8 +54,8 @@
                                         style="display: none;">{{ date('Y/m/d', strtotime($pembelian->tanggal_pembelian)) }}</span>{{ date('d/m/Y', strtotime($pembelian->tanggal_pembelian)) }}
                                 </td>
                                 <td>
-                                    <a href="/dashboard/pembelians/{{ $pembelian->id }}" class="btn btn-primary"><i
-                                            class="bi bi-eye-fill"></i></a>
+                                    <a href="/dashboard/pembelians/{{ $pembelian->id }}"
+                                        class="btn btn-primary mb-2 mb-lg-0"><i class="bi bi-eye-fill"></i></a>
                                     <a href="{{ route('pembelians.destroy', $pembelian->id) }}" class="btn btn-danger"
                                         data-confirm-delete="true"><i class="bi bi-trash-fill"></i></a>
                                 </td>
@@ -70,7 +72,5 @@
         <script src="{{ asset('/dist') }}/assets/extensions/simple-datatables/umd/simple-datatables.js"></script>
         <script src="{{ asset('/dist') }}/assets/static/js/pages/simple-datatables.js"></script>
     @endslot
-
-    <x-slot:title>{{ $title }}</x-slot:title>
 
 </x-layout>

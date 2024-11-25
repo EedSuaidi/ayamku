@@ -1,5 +1,7 @@
 <x-layout>
 
+    <x-slot:title>{{ $title }}</x-slot:title>
+
     @include('sweetalert::alert')
 
     @slot('additionalStyle')
@@ -46,10 +48,10 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $perusahaan->nama }}</td>
                                 <td>
-                                    <a href="/dashboard/perusahaans/{{ $perusahaan->id }}" class="btn btn-primary"><i
-                                            class="bi bi-eye-fill"></i></a>
+                                    <a href="/dashboard/perusahaans/{{ $perusahaan->id }}"
+                                        class="btn btn-primary mb-2 mb-lg-0"><i class="bi bi-eye-fill"></i></a>
                                     <a href="/dashboard/perusahaans/{{ $perusahaan->id }}/edit"
-                                        class="btn btn-warning"><i class="bi bi-pencil-fill"></i></a>
+                                        class="btn btn-warning mb-2 mb-lg-0"><i class="bi bi-pencil-fill"></i></a>
                                     <a href="{{ route('perusahaans.destroy', $perusahaan->id) }}" class="btn btn-danger"
                                         data-confirm-delete="true"><i class="bi bi-trash-fill"></i></a>
                                 </td>
@@ -66,7 +68,5 @@
         <script src="{{ asset('/dist') }}/assets/extensions/simple-datatables/umd/simple-datatables.js"></script>
         <script src="{{ asset('/dist') }}/assets/static/js/pages/simple-datatables.js"></script>
     @endslot
-
-    <x-slot:title>{{ $title }}</x-slot:title>
 
 </x-layout>

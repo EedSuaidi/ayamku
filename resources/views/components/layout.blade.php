@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>{{ $title == 'Dashboard' ? 'Ayamku | Dashboard' : 'Ayamku | Dashboard - ' . $title }}</title>
 
     <link rel="shortcut icon" href="{{ asset('/dist') }}/assets/compiled/svg/favicon.svg" type="image/x-icon">
 

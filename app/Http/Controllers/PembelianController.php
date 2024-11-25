@@ -13,8 +13,8 @@ class PembelianController extends Controller
      */
     public function index()
     {
-        $title = 'Delete Pembelian!';
-        $text = "Are you sure you want to delete?";
+        $title = 'Hapus Pembelian!';
+        $text = "Yakin Ingin Menghapus Data Pembelian?";
         confirmDelete($title, $text);
 
         return view('dashboard.pembelians.index', [
@@ -62,22 +62,6 @@ class PembelianController extends Controller
         return view('dashboard.pembelians.show', compact('pembelian'), [
             'title' => 'Detail Pembelian'
         ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
     }
 
     /**

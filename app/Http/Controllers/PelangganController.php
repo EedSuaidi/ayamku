@@ -12,13 +12,13 @@ class PelangganController extends Controller
      */
     public function index()
     {
-        $title = 'Delete Pelanggan!';
-        $text = "Are you sure you want to delete?";
+        $title = 'Hapus Pelanggan!';
+        $text = "Yakin Ingin Menghapus Data Pelanggan?";
         confirmDelete($title, $text);
 
         return view('dashboard.pelanggans.index', [
             'pelanggans' => Pelanggan::latest()->get(),
-            'title' => 'Pelanggan'
+            'title' => 'Daftar Pelanggan'
         ]);
     }
 
@@ -85,7 +85,7 @@ class PelangganController extends Controller
             'saldo' => 'required'
         ]);
 
-        Pelanggan::where('id', $pelanggan->id)->update($validatedData);
+        $pelanggan->update($validatedData);
 
         alert()->success('Data Berhasil Diubah!');
 

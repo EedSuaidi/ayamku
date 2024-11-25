@@ -1,5 +1,24 @@
 <x-layout>
 
+    <x-slot:title>{{ $title }}</x-slot:title>
+
+    <div class="page-heading mb-3">
+        <div class="row d-flex align-items-center">
+            <div class="col-md-6 order-md-1 order-last">
+                <h3 class="m-0">Pelanggan</h3>
+            </div>
+            <div class="col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="/dashboard/pelanggans">Pelanggan</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Detail</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+
     <section class="section">
         <div class="card">
             <div class="card-header">
@@ -13,24 +32,25 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="nama">Nama</label>
-                                <input type="text" class="form-control" value="{{ $pelanggan->nama }}" id="nama"
-                                    name="nama" placeholder="Masukkan Nama" disabled>
+                                <input type="text" class="form-control" value="{{ $pelanggan->nama }}" disabled>
                             </div>
 
                             <div class="form-group">
                                 <label for="jenis-kelamin">Jenis Kelamin</label>
-                                <fieldset class="form-group">
+                                <input type="text" class="form-control" value="{{ $pelanggan->jenis_kelamin }}"
+                                    disabled>
+                                {{-- <fieldset class="form-group">
                                     <select class="form-select" id="jenis-kelamin" name="jenis_kelamin" disabled>
                                         <option disabled selected>Pilih Jenis Kelamin</option>
-                                        <option value="Laki-laki" @selected($pelanggan->jenis_kelamin == 'Laki - laki')>Laki-laki</option>
+                                        <option value="Laki-laki" @selected($pelanggan->jenis_kelamin == 'Laki-laki')>Laki-laki</option>
                                         <option value="Perempuan" @selected($pelanggan->jenis_kelamin == 'Perempuan')>Perempuan</option>
                                     </select>
-                                </fieldset>
+                                </fieldset> --}}
                             </div>
 
                             <div class="form-group">
                                 <label for="alamat">Alamat</label>
-                                <textarea style="resize: none;" class="form-control" id="alamat" name="alamat" rows="3" disabled>{{ $pelanggan->alamat }}</textarea>
+                                <textarea style="resize: none;" class="form-control" rows="3" disabled>{{ $pelanggan->alamat }}</textarea>
                             </div>
                         </div>
 
@@ -38,7 +58,6 @@
                             <div class="form-group">
                                 <label for="nomor-telepon">Nomor Telepon</label>
                                 <input type="text" class="form-control" value="{{ $pelanggan->nomor_telepon }}"
-                                    id="nomor-telepon" name="nomor_telepon" placeholder="Masukkan Nomor Telepon"
                                     disabled>
                             </div>
 
@@ -46,9 +65,7 @@
                                 <label for="saldo">Saldo</label>
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control"
-                                        value="Rp. {{ number_format($pelanggan->saldo, 0, ',', '.') }}" id="saldo"
-                                        name="saldo" placeholder="Masukkan Saldo" onkeyup="formatSaldo(this)"
-                                        disabled>
+                                        value="Rp. {{ number_format($pelanggan->saldo, 0, ',', '.') }}" disabled>
                                 </div>
                             </div>
 

@@ -19,12 +19,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        User::factory()->create([
+            'name' => 'Eed',
+            'email' => 'eed@gmail.com',
+            'password' => 'eed123',
+        ]);
 
         Penjualan::factory(1000)->recycle([
             Pelanggan::factory(50)->create()
@@ -39,10 +38,5 @@ class DatabaseSeeder extends Seeder
         ])->create();
 
         Pengeluaran::factory(30)->create();
-
-        // Pelanggan::factory()->create([
-        //     'nama' => 'Joko',
-        //     'jenis_kelamin' => 'Laki-laki',
-        // ]);
     }
 }
