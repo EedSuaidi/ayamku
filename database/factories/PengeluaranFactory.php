@@ -17,7 +17,7 @@ class PengeluaranFactory extends Factory
     public function definition(): array
     {
         return [
-            'kategori' => $this->faker->randomElement(['Makanan', 'Pakaian', 'Elektronik', 'Kesehatan']),
+            'kategori' => $this->faker->randomElement(['Ayam', 'Pakan', 'Gaji', 'Sangu', 'Kebutuhan']),
             'total' => fake()->numberBetween(2000000, 10000000),
             'tanggal_pengeluaran' => fake()->dateTimeBetween('-1 year', 'now'),
             'keterangan' => $this->faker->sentence(10)

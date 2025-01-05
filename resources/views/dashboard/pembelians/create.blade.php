@@ -65,7 +65,7 @@
                                 <input type="number" class="form-control @error('jumlah_berat') is-invalid @enderror"
                                     value="{{ old('jumlah_berat') }}" min="0" id="jumlah-berat"
                                     name="jumlah_berat" placeholder="Masukkan Jumlah Berat (kg)"
-                                    oninput="calculateTotal()" required>
+                                    oninput="calculateTotal()" step=".01" required>
 
                                 @error('jumlah_berat')
                                     <div class="alert alert-danger mt-2 mb-1">
@@ -166,9 +166,6 @@
 
             // Add this function to remove dot separator and convert to integer before submitting
             document.getElementById('pembelian-form').addEventListener('submit', function() {
-                let jumlahBeratInput = document.getElementById('jumlah-berat');
-                let jumlahBeratValue = jumlahBeratInput.value.replace(/\./g, '');
-                jumlahBeratInput.value = parseInt(jumlahBeratValue);
                 let hargaInput = document.getElementById('harga');
                 let hargaValue = hargaInput.value.replace(/\./g, '');
                 hargaInput.value = parseInt(hargaValue);

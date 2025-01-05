@@ -39,7 +39,8 @@
                             <div class="form-group">
                                 <label for="Jumlah Berat">Jumlah Berat</label>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" value="{{ $pembelian->jumlah_berat }} kg"
+                                    <input type="text" class="form-control"
+                                        value="{{ floor($pembelian->jumlah_berat) == $pembelian->jumlah_berat ? number_format($pembelian->jumlah_berat, 0, ',', '.') : number_format($pembelian->jumlah_berat, 1, ',', '.') }} kg"
                                         disabled>
                                 </div>
                             </div>

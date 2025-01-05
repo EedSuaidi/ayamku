@@ -47,7 +47,8 @@
                             <div class="form-group">
                                 <label for="Jumlah Berat">Jumlah Berat</label>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" value="{{ $penjualan->jumlah_berat }} kg"
+                                    <input type="text" class="form-control"
+                                        value="{{ floor($penjualan->jumlah_berat) == $penjualan->jumlah_berat ? number_format($penjualan->jumlah_berat, 0, ',', '.') : number_format($penjualan->jumlah_berat, 1, ',', '.') }} kg"
                                         disabled>
                                 </div>
                             </div>
